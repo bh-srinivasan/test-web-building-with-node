@@ -11,12 +11,12 @@ app.use(express.static(path.resolve('./static')));
 
 app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
-    res.sendFile(path.resolve('./index.html'));
+    res.sendFile(path.resolve('./static/index.html'));
 });
 
 app.get('/speakers', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
-    res.sendFile(path.resolve('./speakers.html'));
+    res.sendFile(path.resolve('./static/speakers.html'));
 });
 
 app.listen(port, () => {
