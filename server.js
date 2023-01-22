@@ -5,12 +5,15 @@ const app = express();
 
 const port = 3000;
 
+app.set('view engine', 'ejs');
+app.set('views', path.resolve('./views'));
+
 app.use(express.static(path.resolve('./static')));
 
+console.log(`Restarting`)
 
 app.get('/', (req, res) => {
-    res.setHeader('Content-Type', 'text/html');
-    res.sendFile(path.resolve('./static/index.html'));
+    res.render('pages/index', { pageTitle: 'Welcome' });
 });
 
 app.get('/speakers', (req, res) => {
