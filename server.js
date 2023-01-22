@@ -1,7 +1,12 @@
 const express = require('express');
 const path = require('path');
 
+<<<<<<< Updated upstream
 const routes = require('./routes');
+=======
+// eslint-disable-next-line import/extensions
+import myFunction from './routes/index.js';
+>>>>>>> Stashed changes
 
 const app = express();
 
