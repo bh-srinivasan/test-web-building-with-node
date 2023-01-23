@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\provided",
-    "\\static\\images\\speakers"
+    "\\routes",
+    "\\views",
+    "\\views\\pages"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\server.js",
   "PreviewInSolutionExplorer": false
 }
