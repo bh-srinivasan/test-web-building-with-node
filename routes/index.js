@@ -8,7 +8,7 @@ module.exports = () => {
   router.get('/', (request, response) => {
     response.render('pages/index', { pageTitle: 'Welcome' });
   });
-    router.get('/speakers', (request, response) => speakerRoute());
+    router.use('/speakers',speakerRoute());
 
   return router;
 };
