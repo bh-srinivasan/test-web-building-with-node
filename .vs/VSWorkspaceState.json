@@ -2,9 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\routes",
+    "\\static",
     "\\views",
     "\\views\\pages"
   ],
-  "SelectedNode": "\\server.js",
+  "SelectedNode": "\\routes\\speakers.js",
   "PreviewInSolutionExplorer": false
 }
