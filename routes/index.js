@@ -6,12 +6,13 @@ const feedbackRoute = require('./feedback');
 
 const router = express.Router();
 
-module.exports = () => {
+module.exports = params => {
+ 
   router.get('/', (request, response) => {
     response.render('pages/index', { pageTitle: 'Welcome' });
   });
-    router.use('/speakers', speakerRoute());
-    router.use('/feedback', feedbackRoute());
+    router.use('/speakers', speakerRoute(params));
+    router.use('/feedback', feedbackRoute(params));
 
   return router;
 };

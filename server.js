@@ -5,6 +5,16 @@ const path = require('path');
 // Create a variable for Route where different items can be routed
 const routes = require('./routes/index');
 
+// Import Feedback and SpeakerService js
+const FeedbackService = require('./services/FeedbackService');
+const SpeakerService = require('./services/SpeakerService');
+
+// Call constructors of FeebackService and SpeakerService
+const feedbackService = new FeedbackService('./data/feedback.json');
+const speakerService = new SpeakerService('./data/speakers.json');
+
+
+// Create an instance for Express
 const app = express();
 
 // Create a port where we can listen
@@ -16,7 +26,10 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, './static')));
 
-app.use('/', routes());
+app.use('/', routes({
+    feedbackService,
+    speakerService
+    }));
 
 app.listen(port, () => {
     console.log(`Express server listening on port ${port}!`);

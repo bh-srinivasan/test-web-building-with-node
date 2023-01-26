@@ -3,10 +3,14 @@ const express = require('express');
 const router = express.Router();
 
 
-module.exports = () => {
+module.exports = params => {
 
-    console.log('Coming here');
-    router.get('/', (request, response) => response.render('pages/speakers'));
+    const speakersService = params.speakerService;
+
+    router.get('/', async (_request, response) => {
+        const speakers = await speakersService.getList();
+        response.json(speakers);
+});
     router.get('/:shortname', (request, response) => response.send(`Detail page of ${request.params.shortname}`));
 
   /* router.get('/', (request, response) => response.send('Speakers list'));
