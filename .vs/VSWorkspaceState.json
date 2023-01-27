@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\provided",
-    "\\static\\images\\speakers"
+    "\\data",
+    "\\routes",
+    "\\services"
   ],
-  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }
