@@ -2,9 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\data",
+    "\\provided",
     "\\routes",
-    "\\services"
+    "\\services",
+    "\\views",
+    "\\views\\pages"
   ],
-  "SelectedNode": "\\data",
+  "SelectedNode": "\\routes\\index.js",
   "PreviewInSolutionExplorer": false
 }
