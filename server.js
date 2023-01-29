@@ -29,6 +29,16 @@ app.use(express.static(path.join(__dirname, './static')));
 
 app.set('trust proxy', 1);
 
+// Set Global Variables
+app.locals.siteName = 'ROUX Meetups';
+
+// Set Variables for Home Page
+
+app.use((request, response, next) => {
+    response.locals.homeVar = 'Home';
+    next();
+});
+
 
 // SetupnCookies
 app.use(cookieSession({
