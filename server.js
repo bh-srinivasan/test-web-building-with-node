@@ -32,11 +32,24 @@ app.set('trust proxy', 1);
 // Set Global Variables
 app.locals.siteName = 'ROUX Meetups';
 
-// Set Variables for Home Page
-
+// Set Variables for Home Page in response
 app.use((request, response, next) => {
     response.locals.homeVar = 'Home';
     next();
+});
+
+// Try to get the Speaker List
+app.use(async (request, response, next) => {
+    try {
+        const speakers = await speakerService.getNames();
+        response.locals.speakersList = speakers;
+        console.log(response.locals);
+        return next();
+    }
+    catch (err) {
+        return next(err);
+    }
+    
 });
 
 
