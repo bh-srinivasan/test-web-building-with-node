@@ -17,7 +17,7 @@ module.exports = params => {
         }
         console.log(request.session.visitcount); */
 
-        response.render('pages/index', { pageTitle: 'Welcome Everyone' }); 
+        response.render('layout/index', { pageTitle: 'Welcome Everyone', template: 'index' } );
 
   });
     router.use('/speakers', speakerRoute(params));

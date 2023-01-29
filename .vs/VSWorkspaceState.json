@@ -5,9 +5,11 @@
     "\\provided",
     "\\routes",
     "\\services",
+    "\\static",
     "\\views",
+    "\\views\\layout",
     "\\views\\pages"
   ],
-  "SelectedNode": "\\routes\\index.js",
+  "SelectedNode": "\\views\\layout\\index.ejs",
   "PreviewInSolutionExplorer": false
 }
