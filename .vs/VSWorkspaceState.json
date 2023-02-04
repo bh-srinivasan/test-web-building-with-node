@@ -1,15 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\data",
-    "\\provided",
     "\\routes",
-    "\\services",
-    "\\static",
     "\\views",
     "\\views\\layout",
-    "\\views\\pages"
+    "\\views\\layout\\partials",
+    "\\views\\pages",
+    "\\views\\pages\\partials"
   ],
-  "SelectedNode": "\\views\\layout\\index.ejs",
+  "SelectedNode": "\\views\\pages\\index.ejs",
   "PreviewInSolutionExplorer": false
 }

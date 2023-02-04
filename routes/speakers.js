@@ -16,8 +16,15 @@ module.exports = params => {
         }
         console.log(request.session.visitcount); */
 
-        const speakers = await speakersService.getList();
-        response.json(speakers);
+        const Speakers = await speakersService.getList();
+        // console.log(Speakers);
+        response.render('layout/index', { pageTitle: 'Welcome', template: 'speakers', Speakers });
+
+        // Commenting below lines to templatize the pages
+        // response.json(speakers);
+
+
+               
 });
     router.get('/:shortname', (request, response) => response.send(`Detail page of ${request.params.shortname}`));
 
