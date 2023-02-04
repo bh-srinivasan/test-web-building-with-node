@@ -32,6 +32,29 @@ app.set('trust proxy', 1);
 // Set Global Variables
 app.locals.siteName = 'ROUX Meetups';
 
+// Set Global Variable of Artlist
+const artworkList = [
+    { src: "./images/artwork/Lorenzo_Garcia_01_tn.jpg", alt: "Artwork 0" },
+    { src: "./images/artwork/Lorenzo_Garcia_02_tn.jpg", alt: "Artwork 1" },
+    { src: "./images/artwork/Lorenzo_Garcia_03_tn.jpg", alt: "Artwork 2" },
+    { src: "./images/artwork/Lorenzo_Garcia_04_tn.jpg", alt: "Artwork 3" },
+    { src: "./images/artwork/Hillary_Goldwynn_01_tn.jpg", alt: "Artwork 4" },
+    { src: "./images/artwork/Hillary_Goldwynn_02_tn.jpg", alt: "Artwork 5" },
+    { src: "./images/artwork/Hillary_Goldwynn_03_tn.jpg", alt: "Artwork 6" },
+    { src: "./images/artwork/Hillary_Goldwynn_04_tn.jpg", alt: "Artwork 7" },
+    { src: "./images/artwork/Hillary_Goldwynn_05_tn.jpg", alt: "Artwork 8" },
+    { src: "./images/artwork/Hillary_Goldwynn_06_tn.jpg", alt: "Artwork 9" },
+    { src: "./images/artwork/Hillary_Goldwynn_07_tn.jpg", alt: "Artwork 10" },
+    { src: "./images/artwork/Riley_Rewington_01_tn.jpg", alt: "Artwork 11" },
+    { src: "./images/artwork/Riley_Rewington_02_tn.jpg", alt: "Artwork 12" },
+    { src: "./images/artwork/Riley_Rewington_03_tn.jpg", alt: "Artwork 13" },
+    { src: "./images/artwork/Riley_Rewington_04_tn.jpg", alt: "Artwork 14" },
+    { src: "./images/artwork/Riley_Rewington_05_tn.jpg", alt: "Artwork 15" },
+    { src: "./images/artwork/Riley_Rewington_06_tn.jpg", alt: "Artwork 16" },
+];
+
+app.locals.artworkList = artworkList;
+
 // Set Variables for Home Page in response
 app.use((request, response, next) => {
     response.locals.homeVar = 'Home';
@@ -43,7 +66,7 @@ app.use(async (request, response, next) => {
     try {
         const speakers = await speakerService.getNames();
         response.locals.speakersList = speakers;
-        console.log(response.locals);
+        // console.log(response.locals);
         return next();
     }
     catch (err) {

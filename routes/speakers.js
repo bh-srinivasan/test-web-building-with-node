@@ -18,7 +18,9 @@ module.exports = params => {
 
         const Speakers = await speakersService.getList();
         // console.log(Speakers);
-        response.render('layout/index', { pageTitle: 'Welcome', template: 'speakers', Speakers });
+        
+
+        response.render('layout/index', { pageTitle: 'Speakers', template: 'speakers', Speakers});
 
         // Commenting below lines to templatize the pages
         // response.json(speakers);
