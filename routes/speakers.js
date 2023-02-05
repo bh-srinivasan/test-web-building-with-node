@@ -2,17 +2,20 @@ const express = require('express');
 
 const router = express.Router();
 
-var fs = require('fs');
-var path = require('path');
-
 module.exports = params => {
 
     const speakersService = params.speakerService;
 
-    router.get('/', async (request, response) => {
+    router.get('/', async (request, response,next) => {
+        try{
         const Speakers = await speakersService.getList();
         const artWork= await speakersService.getAllArtwork();
-        response.render('layout/index', { pageTitle: 'Speakers', template: 'speakers', Speakers,artWork });
+        return response.render('layout/index', { pageTitle: 'Speakers', template: 'speakers', Speakers,artWork });
+        }
+        catch(err){
+          return next(err);
+        }
+        
         /* if (!request.session.visitcount) {
            request.session.visitcount = 1;
        } else {
@@ -21,14 +24,19 @@ module.exports = params => {
        console.log(request.session.visitcount); */
     });
 
-    router.get('/:shortname', async (request, response) => {
-        const speaker = await speakersService.getSpeaker(request.params.shortname)
+    router.get('/:shortname', async (request, response,next) => {
+        try{
+          const speaker = await speakersService.getSpeaker(request.params.shortname)
         console.log(speaker);
         // get the data for Artworks
         const artWork = await speakersService.getArtworkForSpeaker(request.params.shortname);
         console.log(`Artwork list : ${artWork}`);
-        response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWork });
+        return response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWork });
 
+        }
+        catch(err){
+          return next(err);
+        }
         /* 
         // Find image file for respective speaker
         const speakerName = request.params.shortname;
