@@ -27,7 +27,8 @@ module.exports = params => {
         // get the data for Artworks
         const artWorks = await speakersService.getArtworkForSpeaker(request.params.shortname);
         console.log(`Artwork list : ${artWorks}`);
-        
+        response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWorks });
+
         /* 
         // Find image file for respective speaker
         const speakerName = request.params.shortname;
@@ -52,7 +53,6 @@ module.exports = params => {
           console.log(`Found imageFiles: ${imageFiles}`);
       
         }); */ 
-        response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWorks });
 
       });
       
