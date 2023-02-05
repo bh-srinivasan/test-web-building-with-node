@@ -10,9 +10,9 @@ module.exports = params => {
     const speakersService = params.speakerService;
 
     router.get('/', async (request, response) => {
-
         const Speakers = await speakersService.getList();
-        response.render('layout/index', { pageTitle: 'Speakers', template: 'speakers', Speakers });
+        const artWork= await speakersService.getAllArtwork();
+        response.render('layout/index', { pageTitle: 'Speakers', template: 'speakers', Speakers,artWork });
         /* if (!request.session.visitcount) {
            request.session.visitcount = 1;
        } else {
@@ -25,9 +25,9 @@ module.exports = params => {
         const speaker = await speakersService.getSpeaker(request.params.shortname)
         console.log(speaker);
         // get the data for Artworks
-        const artWorks = await speakersService.getArtworkForSpeaker(request.params.shortname);
-        console.log(`Artwork list : ${artWorks}`);
-        response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWorks });
+        const artWork = await speakersService.getArtworkForSpeaker(request.params.shortname);
+        console.log(`Artwork list : ${artWork}`);
+        response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWork });
 
         /* 
         // Find image file for respective speaker
