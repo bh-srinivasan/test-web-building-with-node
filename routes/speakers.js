@@ -24,10 +24,16 @@ module.exports = params => {
     router.get('/:shortname', async (request, response) => {
         const speaker = await speakersService.getSpeaker(request.params.shortname)
         console.log(speaker);
-      
+        // get the data for Artworks
+        const artWorks = await speakersService.getArtworkForSpeaker(request.params.shortname);
+        console.log(`Artwork list : ${artWorks}`);
+        
+        /* 
         // Find image file for respective speaker
         const speakerName = request.params.shortname;
         console.log(`Speaker Identified is: ${speakerName}`);
+        
+        // Another way to search for Files by their names8j7
         const imageFiles = [];
         console.log(`Directory Identified is: ${path.join(__dirname, '../static/images/artwork')}`)
       
@@ -45,8 +51,9 @@ module.exports = params => {
           });
           console.log(`Found imageFiles: ${imageFiles}`);
       
-          response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, imageFiles });
-        });
+        }); */ 
+        response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWorks });
+
       });
       
       return router;
