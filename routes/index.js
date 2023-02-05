@@ -17,7 +17,8 @@ module.exports = params => {
         }
         console.log(request.session.visitcount); */
         // Getting list of speakers and passing to page
-        const { speakerService } = params;
+        try{
+          const { speakerService } = params;
         const topSpeakers = await speakerService.getList()
         // console.log(topSpeakers);
         // Text variables
@@ -29,7 +30,12 @@ module.exports = params => {
 
         const artWork= await speakerService.getAllArtwork();
 
-        response.render('layout/index', { pageTitle: 'Welcome Everyone', template: 'index', topSpeakers, exhibitInfo, featuredArtistText,artWork} );
+        return response.render('layout/index', { pageTitle: 'Welcome Everyone', template: 'index', topSpeakers, exhibitInfo, featuredArtistText,artWork} );
+        }
+        catch(err){
+          return isNamedExportBindings(err);
+        }
+        
 
   });
     router.use('/speakers', speakerRoute(params));
