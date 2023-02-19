@@ -9,13 +9,7 @@ const router = express.Router();
 module.exports = params => {
  
     router.get('/', async (request, response,next) => {
-       /* console.log('Coming Here!');
-        if (!request.session.visitcount) {
-            request.session.visitcount = 1;
-        } else {
-            request.session.visitcount += 1;
-        }
-        console.log(request.session.visitcount); */
+        
         // Getting list of speakers and passing to page
         try{
           const { speakerService } = params;

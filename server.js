@@ -73,7 +73,7 @@ app.use((request, response, next) => {
 });
 
 // Error handling middleware
-app.use((err, request, response, next) => {
+app.use((err, request, response, _next) => {
   response.locals.message = err.message;
   console.error(err);
   const status = err.status || 500;
