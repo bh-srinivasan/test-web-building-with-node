@@ -4,6 +4,10 @@ const path = require('path');
 
 // Create a variable for Route where different items can be routed
 const cookieSession = require('cookie-session');
+
+// Define Error Catching
+const createError = require('http-errors');
+
 const routes = require('./routes/index');
 
 // Import Feedback and SpeakerService js
@@ -14,8 +18,7 @@ const SpeakerService = require('./services/SpeakerService');
 const feedbackService = new FeedbackService('./data/feedback.json');
 const speakerService = new SpeakerService('./data/speakers.json');
 
-// Define Error Catching
-const createError = require('http-errors');
+
 
 // Create an instance for Express
 const app = express();
