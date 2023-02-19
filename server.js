@@ -14,6 +14,9 @@ const SpeakerService = require('./services/SpeakerService');
 const feedbackService = new FeedbackService('./data/feedback.json');
 const speakerService = new SpeakerService('./data/speakers.json');
 
+// Define Error Catching
+const createError = require('http-errors');
+
 
 // Create an instance for Express
 const app = express();
@@ -65,7 +68,16 @@ app.use('/', routes({
     speakerService
     }));
 
-
+    app.use((request, response, next) => next(createError(404,'No Page Found')) );
+    app.use((err, request, response, next) => {
+        response.locals.message = err.message;
+        console.error(err);
+        const status = err.status || 500;
+        response.locals.status = status;
+        response.status(status);
+        response.render('error');
+      });
+      
 
 app.listen(port, () => {
     console.log(`Express server listening on port ${port}!`);
