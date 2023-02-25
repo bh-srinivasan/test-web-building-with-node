@@ -8,6 +8,9 @@ const cookieSession = require('cookie-session');
 // Define Error Catching
 const createError = require('http-errors');
 
+//Import Body-parser
+const bodyParser = require('body-parser');
+
 const routes = require('./routes/index');
 
 // Import Feedback and SpeakerService js
@@ -63,6 +66,9 @@ app.use(
     maxAge: 1 * 60 * 60 * 1000, // 24 hours
   })
 );
+
+// Setup BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/', routes({ feedbackService, speakerService }));
