@@ -16,28 +16,30 @@ module.exports = params => {
           return next(err);
         }
         
-        /* if (!request.session.visitcount) {
-           request.session.visitcount = 1;
-       } else {
-           request.session.visitcount += 1;
-       }
-       console.log(request.session.visitcount); */
+       
     });
 
     router.get('/:shortname', async (request, response,next) => {
         try{
           const speaker = await speakersService.getSpeaker(request.params.shortname)
-        console.log(speaker);
+        // console.log(speaker);
         // get the data for Artworks
         const artWork = await speakersService.getArtworkForSpeaker(request.params.shortname);
-        console.log(`Artwork list : ${artWork}`);
+        // console.log(`Artwork list : ${artWork}`);
         return response.render('layout/index', { pageTitle: 'Speakers', template: 'speaker-details', speaker, artWork });
 
         }
         catch(err){
           return next(err);
         }
-        /* 
+        
+      });
+      
+      return router;
+      };
+      
+      
+/* 
         // Find image file for respective speaker
         const speakerName = request.params.shortname;
         console.log(`Speaker Identified is: ${speakerName}`);
@@ -61,10 +63,3 @@ module.exports = params => {
           console.log(`Found imageFiles: ${imageFiles}`);
       
         }); */ 
-
-      });
-      
-      return router;
-      };
-      
-      

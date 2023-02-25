@@ -1,6 +1,6 @@
 const express = require('express');
 
-const {check,validationResult} = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
 
@@ -10,13 +10,15 @@ module.exports = params => {
   router.get('/', async (request, response, next) => {
     try {
       const feedback = await feedbackService.getList();
-      const errors = request.session.feedback? request.session.feedback.errors:false;
-      request.session.feedback={};
+      const errors = request.session.feedback ? request.session.feedback.errors : false;
+      request.session.feedback = {};
       return response.render('layout', {
         pageTitle: 'Feedback',
         template: 'feedback',
         feedback,
-        errors
+        errors,
+        messages: request.flash(),
+        success: request.query.success // read success query parameter to determine if the form was just submitted
       });
     } catch (err) {
       return next(err);
@@ -31,14 +33,16 @@ module.exports = params => {
   ], async (request, response) => {
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
-      request.session.feedback={ errors: errors.array() };
+      request.session.feedback = { errors: errors.array() };
       return response.redirect('/feedback');
     }
-  
-    console.log(request.body);
-    await feedbackService.addEntry(request.body.name, request.body.email, request.body.title, request.body.message);
-    return response.send('Feedback form posted');
+
+    const { name, email, title, message } = request.body;
+    await feedbackService.addEntry(name, email, title, message);
+
+    // redirect to the same page with a success query parameter
+    return response.redirect('/feedback?success=true');
   });
-  
+
   return router;
 };

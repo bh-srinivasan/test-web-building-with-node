@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-4">
       <div class="maincontent">
-
         <h1>Send us feedback</h1>
         <% if (errors) { %>
           <div class="alert alert-danger">
@@ -10,7 +9,12 @@
               <%= errors[i].msg %><br>
             <% } %>
           </div>
-          <% } %>
+        <% } %>
+        <% if (success) { %>
+          <div class="alert alert-success">
+            Form submitted successfully!
+          </div>
+        <% } %>
         <form class="feedback-form" method="post" action="/feedback">
           <div class="form-group">
             <label for="feedback-form-name">Name</label>
@@ -36,13 +40,11 @@
     <aside class="col-md-8">
       <div class="maincontent feedback">
         <h1>Recent Feedback</h1>
-
         <div class="feedback-items">
           <% feedback.forEach(function (feedback) {%>
           <div class="feedback-item item-list media-list">
             <div class="feedback-item media">
               <div class="feedback-info media-body">
-                
                 <div class="feedback-head">
                   <div class="feedback-title"><%= feedback.title%></div>
                   <small>by <%= feedback.name%></small>
@@ -57,3 +59,22 @@
     </aside>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('.feedback-form').on('submit', function(event) {
+      event.preventDefault();
+      var form = $(this);
+      $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: function(response) {
+          if (response.success) {
+            form.prepend('<div class="alert alert-success">Form submitted successfully!</div>');
+          }
+        }
+      });
+    });
+  });
+</script>

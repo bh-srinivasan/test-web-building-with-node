@@ -8,8 +8,12 @@ const cookieSession = require('cookie-session');
 // Define Error Catching
 const createError = require('http-errors');
 
-//Import Body-parser
+// Import Body-parser
 const bodyParser = require('body-parser');
+
+// Import Flash
+const flash = require('connect-flash');
+
 
 const routes = require('./routes/index');
 
@@ -46,6 +50,9 @@ app.use((request, response, next) => {
   next();
 });
 
+// Using Flash
+app.use(flash());
+
 // Try to get the Speaker List
 app.use(async (request, response, next) => {
   try {
@@ -79,7 +86,7 @@ app.use((request, response, next) => {
 });
 
 // Error handling middleware
-app.use((err, request, response, _next) => {
+app.use((err, request, response) => {
   response.locals.message = err.message;
   console.error(err);
   const status = err.status || 500;
