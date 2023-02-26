@@ -9,10 +9,9 @@
               <%= errors[i].msg %><br>
             <% } %>
           </div>
-        <% } %>
-        <% if (success) { %>
+        <% } else if (locals.successMessage) { %>
           <div class="alert alert-success">
-            Form submitted successfully!
+            <%= successMessage %>
           </div>
         <% } %>
         <form class="feedback-form" method="post" action="/feedback">
@@ -59,22 +58,3 @@
     </aside>
   </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $('.feedback-form').on('submit', function(event) {
-      event.preventDefault();
-      var form = $(this);
-      $.ajax({
-        type: form.attr('method'),
-        url: form.attr('action'),
-        data: form.serialize(),
-        success: function(response) {
-          if (response.success) {
-            form.prepend('<div class="alert alert-success">Form submitted successfully!</div>');
-          }
-        }
-      });
-    });
-  });
-</script>
